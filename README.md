@@ -1,4 +1,60 @@
-Apache License
+# What is MoonPay Commerce?
+
+## Overview
+
+---
+
+**MoonPay Commerce** is MoonPay’s crypto payments platform that enables businesses and creators to accept cryptocurrency payments securely, with instant, borderless transactions worldwide.
+
+With MoonPay Commerce, you can accept popular cryptocurrencies such as **USDC, SOL, BTC & ETH** along with 100s of other tokens for e-commerce, digital goods, or subscription services. Payments are settled instantly in stablecoins, so you can receive funds quickly and reliably.
+
+Today, more than **6,000 merchants** and **millions of users** trust MoonPay Commerce to power their crypto checkouts around the world.
+
+## Key benefits
+
+---
+
+- **Accept Crypto Globally**: Receive payments from customers anywhere in the world in popular cryptocurrencies such as **USDC, SOL, BTC, ETH**, and many more
+
+- **Instant Settlement**: Funds are delivered to your wallet within seconds – no intermediaries, no delays
+
+- **Simple Integration**: Get started on MoonPay Commerce and launch payments in minutes
+
+- **Fiat Conversion**: Automatically convert crypto to fiat to a bank account
+
+## How it works
+
+---
+
+- **Create a MoonPay Commerce account** by connecting a wallet or signing in with email via<https://moonpay.hel.io/>
+
+- **Set up a payment** –  choose from paylinks, deposits, subscriptions or the checkout widget
+
+- **Share your payment** or embed it in your website or app
+
+- **Receive payments instantly** in your preferred crypto wallet or connected bank account
+
+![](https://downloads.intercomcdn.eu/i/o/i579df0u/73797879/766b23333f229982f12f1ce34b9e/note.png?expires=1790208000&amp;signature=82a84fc58b2e6591818262ae5324c8e11784af28e98bf51c6f0a1ab5515ca07a&amp;req=19ZozF%2Fyqz5k2hr889pg6qNLSwNu%2BQv66NjkuIR6tdGp7AiCgSQirRhWKCs%3D%0A) **Note:** Payments are settled in stablecoins, ensuring fast and reliable transfers with minimal volatility.
+
+## Who it’s for
+
+---
+
+**MoonPay Commerce is ideal for:**
+
+- **Businesses** looking for a global, cost-efficient alternative to traditional payment processors
+
+- **Developers** building Web3 apps that require in-app crypto payments
+
+- **Creators** selling digital products or memberships
+
+## Next steps
+
+---
+
+You can get started today by visiting [moonpay.hel.io](http://moonpay.hel.io) and reviewing our integration documentation.
+
+![](https://downloads.intercomcdn.eu/i/o/i579df0u/73798303/d9c34bbf64f67b3ea84d5eebc1e6/tip.png?expires=1790208000&amp;signature=d293d00285545a517b089791605c42d1fdbe2ed5f6e6e046f84cc3ee3c60ceb8&amp;req=19ZozFD5rDRk2hr889pg6nXgGk84wY15YZFxyNSQ%2F1PZpWIaIFoibQM7KUk%3D%0A)**Tip:** Check out the MoonPay Commerce [developer resources](https://docs.hel.io/docs/welcome-to-helio) for best practices and implementation examples.Apache License
 Version 2.0, January 2004
 http://www.apache.org/licenses/
 
