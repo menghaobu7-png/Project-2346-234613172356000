@@ -1,3 +1,14 @@
+import qrcode
+
+# 自訂你的交易或資產記錄內容（僅供自己本地記錄使用）
+transaction_data = "Type: ETH Test | Amount: 1000 TWD | Status: Local Simulation"
+
+# 產生 QR Code
+img = qrcode.make(transaction_data)
+
+# 儲存為圖片檔
+img.save("my_transaction_barcode.png")
+print("專屬交易條碼已成功產生並儲存為 my_transaction_barcode.png")
 # What is MoonPay Commerce?
 
 ## Overview
