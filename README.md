@@ -96,3 +96,197 @@ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
    [附加補充說明：本專案在霓虹廢墟與地下長廊中持續迭代，所有源碼、授權與模組皆遵循開放原始精神與自由意志，特此加註以茲識別。]
 # Project-2346-234613172356000
 有些東西都是有價值的，而我的東西有的價值的經，就是價值在可以無限
+# How to stay safe when using cryptocurrency
+
+Before you send your cryptocurrency to someone else, be cautious of possible scams. Here are some signs to look out for.
+
+![](https://downloads.intercomcdn.eu/i/o/i579df0u/61358460/1f74cef69a5becfb0dd062179958/important.png?expires=1790208000&amp;signature=3c6fed41cddba4a7df86ceda32fd7c446e3caf72ca99c42014980ee90197d85e&amp;req=1tRswFD%2Bqjdk2hr889pg6v2QaBEbKh7sbBiZztWRWXBIFW6fragQ4zzko%2B8%3D%0A) **Important:**
+​MoonPay employees will **NEVER:**
+
+- Contact you via phone, social media or messaging apps
+
+- Ask you to transfer funds from one account/wallet to another
+
+- Ask you to install apps or software on your device
+
+- Take control of your device by remotely accessing it
+
+If someone asks you for any of the above, please report it to your local authorities/police immediately. You can also share the wallet with MoonPay support to help us protect other customers.
+
+- **Be Skeptical of Guaranteed Profits**
+
+  - Legitimate companies will not guarantee profits or big returns. Be cautious to trust people who promise returns, as these promises are likely red flags
+
+  - MoonPay is not affiliated with any brokers. If someone claims to be a MoonPay broker, this is likely a scam and your funds are at risk if you engage with them
+
+- **Be Cautious with Payment Demands in Cryptocurrency**
+
+  - Legitimate businesses typically do not demand advance payments in cryptocurrency. If someone insists on it, be cautious – it might be a scam
+
+  - Search for publicly verifiable reviews on Google, Trustpilot, or Better Business Bureau to validate their services
+
+- **Don’t Mix Online Dating and Investment Advice**
+
+  - If someone you meet on a dating site or app offers investment advice or requests cryptocurrency transactions, be wary; it's likely not a genuine connection and could be an attempt to exploit you
+
+Cryptocurrency transactions are **permanent** and **cannot be undone**. Therefore, you should only transact with third-party services or merchants who are legitimate and trustworthy.
+
+This article provides helpful tips and educational information to ensure you're making informed decisions and avoiding financial loss through common scams.
+
+## Here’s what you need to know: How to recognize common scams
+
+---
+
+### Investment scams
+
+Investment scammers guarantee high returns on investment or profit without risk. They will ask you for additional cryptocurrency payments to unlock higher profits, or ask you to pay tax or a commission fee to release your ‘blocked’ funds. If something seems too good to be true, it probably is.
+
+**Here’s what to look out for:**
+
+- Sites or individuals claiming high returns/profits with minimal risk
+
+- Unregistered or unlicensed companies
+
+- Difficulties withdrawing your funds
+
+- Complex or vague investment strategies such as:
+
+  - Additional fees/charges to access your funds
+
+  - Asking you to reach out to an “account manager” to access your portfolio
+
+**How to avoid investment scams:**
+
+- Only send crypto to trusted third parties
+
+- Watch out for spelling and grammar mistakes in emails and communications
+
+- Research the company by verifying details on publicly available information/sites
+
+- Be wary of websites or individuals who guarantee a high profit
+
+### Impersonation scams
+
+Scammers impersonate a variety of companies, including MoonPay, as well as regulatory bodies. Be cautious of people pretending to be MoonPay or one of our partners.
+
+They'll try to get your private information through calls, emails, social media, and messaging apps. Remember that MoonPay will never contact you via phone, social media, or messaging apps.
+
+**How to avoid impersonation scams:**
+
+- Don’t give remote access to your device
+
+- Don’t give out your personal details or account details
+
+- Don’t give out your 2FA codes or passwords
+
+- Don’t send cryptocurrency to third parties you don’t trust or people you don’t know
+
+- Don’t accept calls asking for your personal information
+
+### Imposter websites
+
+Imposter websites are fraudulent websites that appear legitimate. These websites may have similar URLs to real companies.
+
+**Here’s what to look out for:**
+
+- Similar URL to a real company (i.e., using a ‘0’ instead of the letter ‘o’)
+
+- Poor design quality
+
+- Spelling and grammar mistakes
+
+- There may be no “about” and “contact” pages
+
+### E-commerce scams
+
+Scammers might sell you fake goods or services. Cryptocurrency transactions can’t be reversed, so it’s important to be cautious when buying goods or services. This means that you won’t be able to get your funds back.
+
+**Tips to avoid e-commerce scams:**
+
+- Purchase goods from the official website
+
+- Only send cryptocurrency to trusted third parties
+
+- Check reviews of the e-commerce website you want to buy from
+
+- Research the company
+
+### Giveaway scams
+
+Scammers may use social media for fake giveaways. These may promise to double your crypto if you send it. If you send your crypto to a scam giveaway, you’ll lose your crypto because cryptocurrency transactions are irreversible by nature.
+
+**Tips to stay safe:**
+
+- Don’t send crypto to giveaways that ask you to verify your address
+
+- Don’t rely on social media messages and images to verify if the giveaway is legitimate, because images can be forged/altered
+
+- Check the giveaway URL
+
+- Verify that the giveaway is coming from an official social media account or website
+
+### Phone-based attacks
+
+Scammers will try to transfer their target’s phone number on a device they can control. They do this to steal identities and pose a threat to accounts using SMS-based 2-step authentication.
+
+**How to stay safe:**
+
+- Consider strong 2FA methods such as Universal 2nd Factor
+
+- Consider a one-time password with a mobile authenticator such as Google Authenticator
+
+### Technical support and impersonation scams
+
+Fraudsters will try to impersonate official technical support for various companies, including MoonPay. They will ask for personal details and may even try to take control of your account or device remotely.
+
+**How to avoid impersonation scams:**
+
+- Verify that you’re talking to the company’s official customer/tech support
+
+- Use the contact information from the official website instead of social media or other websites
+
+- Never give out personal information or account details
+
+- MoonPay will never contact you by phone, social media, or messaging apps
+
+- MoonPay will never ask you for your personal information or account details
+
+### Extortion scams
+
+These involve scammers who claim to have your information from data breaches on other websites. They will try to get you to follow their instructions. Always be cautious and avoid sharing your data as instructed.
+
+### Load-up scams
+
+These scammers provide “loading” services across multiple platforms, where they look for accounts with higher limits. They will then offer a part of the profits. These scammers use stolen credit cards on compromised accounts and take part in payment fraud schemes.
+
+**How to avoid these scams:**
+
+- Don’t share your passwords and security codes
+
+- Report the scammer to the platform used
+
+### Telegram scams
+
+MoonPay has an official online presence on LinkedIn, Instagram, Twitter, and Facebook. MoonPay does not have an official presence on Telegram, so if you come across any MoonPay Telegram channel, it is not official. Always be wary when using Telegram because scams, fraudulent payment bots, and fake giveaways are common on unofficial platforms.
+
+**How to avoid Telegram scams:**
+
+- Only engage with official platform channels
+
+- If you’re not sure whether a channel is official, check on the company’s website
+
+### Employment scams
+
+Scammers will often pose as recruiters and provide you with fraudulent employment opportunities. These deceptive offers often come with convincing offer letters and may ask for sensitive personal information. Legitimate offers from MoonPay will be posted or communicated exclusively through our official website.
+
+**How to avoid employment scams:**
+
+- Verify the recruiter who has contacted you
+
+- Only apply for jobs through the official website
+
+### Dusting attacks
+
+A dusting attack takes place when an attacker sends a small amount of cryptocurrency to numerous wallets through an airdrop. These tokens can include a URL and prompt recipients to click and unveil their seed phrase. If you receive a small amount of crypto, you shouldn’t interact with it.
+
+![](https://downloads.intercomcdn.eu/i/o/i579df0u/75577265/c19a8b3991afe0f5d7a90fef7a0c/tip.png?expires=1790208000&amp;signature=344c43d0a642c7aa286a1f6a5283fabca1485c25e184f2bdd7a07694704bbb38&amp;req=19Bqwl%2F4qjJk2hr889pg6uXVII1v6zl5iKsuHYs9BD5Lx7tpa9UpxKdGaZY%3D%0A) **Tip:** If you think you’ve been targeted in a cryptocurrency scam, read our guide on [what to do if you suspect a cryptocurrency scam](https://support.moonpay.com/en/articles/472109-what-to-do-if-you-suspect-a-cryptocurrency-scam). It explains the steps to take right away, including how to report the incident, secure your accounts, and understand what MoonPay can and cannot do to help.
