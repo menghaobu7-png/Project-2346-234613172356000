@@ -1,4 +1,220 @@
-import qrcode
+# iOS SDK Integration Guide
+
+> For the complete documentation index, see [llms.txt](https://docs.banxa.com/llms.txt). Append `.md` to any page URL for its markdown version.
+
+
+This guide walks through a complete Banxa Hosted Checkout integration in a native iOS app using the Banxa iOS SDK. By the end you will have a working buy flow: configure the SDK once, start a payment with a single call, and confirm the final order status from your backend.
+
+The iOS SDK is headless. There is no Banxa view controller to embed and no WebView for you to manage. You supply an order request and a host view controller, and the SDK presents checkout, handles the payment, and reports the outcome on a delegate.
+
+For the full API surface, see the [iOS SDK Reference](/products/hosted-checkout/docs/sdk-integration/ios-sdk-reference).
+
+## Before you start
+
+### Prerequisites
+
+- A native iOS app on iOS 13.1 or above, built with Xcode 16 and Swift 6.0 or above.
+- Your Banxa partner reference and API key. Use sandbox for development, production after approval.
+- A configured webhook endpoint. Optional but recommended for order status tracking.
+
+
+### Install the SDK
+
+Add the package in Xcode through **File, Add Package Dependencies**, or declare it in `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/BanxaOfficial/ios-payment-sdk", from: "1.0.0")
+]
+```
+
+Then add `BanxaPaymentSDK` to your target:
+
+```swift
+.target(
+    name: "YourApp",
+    dependencies: [
+        .product(name: "BanxaPaymentSDK", package: "ios-payment-sdk")
+    ]
+)
+```
+
+## Step 1: Configure the SDK
+
+Configure once at app launch and set your delegate. Calling any SDK method before `configure(config:)` fails with `APIError.sdkNotConfigured`.
+
+```swift
+import BanxaPaymentSDK
+
+let config = BanxaConfig(
+    apiKey: "YOUR_API_KEY",
+    partnerID: "your-partner-id",
+    environment: .sandbox            // .sandbox or .production
+)
+
+BanxaPaymentSDK.shared.configure(config: config)
+BanxaPaymentSDK.shared.delegate = self
+```
+
+| Field | Description |
+|  --- | --- |
+| `apiKey` | Your v2 API key from the merchant dashboard. |
+| `partnerID` | Your partner identifier. |
+| `environment` | `.sandbox` or `.production`. Credentials are not interchangeable. |
+
+
+## Step 2: Get a quote
+
+Fetch live pricing before you show an amount to the customer. Call this close to when the price is displayed, because crypto rates move quickly and quotes are indicative.
+
+```swift
+let request = QuoteRequest(
+    paymentMethodID: "debit-credit-card",
+    crypto: "ETH",
+    blockchain: "ETH",
+    fiat: "USD",
+    fiatAmount: "200"
+)
+
+let quotes = try await BanxaPaymentSDK.shared.fetchQuotes(orderType: .buy, request: request)
+
+print("Receive:", quotes[0].cryptoAmount ?? "-")
+print("Processing fee:", quotes[0].processingFee ?? "-")
+print("Network fee:", quotes[0].networkFee ?? "-")
+```
+
+Provide either `fiatAmount` or `cryptoAmount`. If both are set, Banxa uses `cryptoAmount`. Quotes carry no quote id, so there is nothing to pass into the payment call.
+
+`fetchQuotes` always returns an array, because Banxa returns multiple entries when discount codes apply.
+
+## Step 3: Start the payment
+
+Build a `CreateOrderRequest` and call `startPayment(request:controller:)` when the customer confirms. Pass the view controller that should host the checkout presentation.
+
+```swift
+let request = CreateOrderRequest(
+    crypto: "ETH",
+    fiat: "EUR",
+    fiatAmount: "40",
+    walletAddress: "0x0000000000000000000000000000000000000000",
+    email: "user@example.com",
+    redirectURL: "your-app-scheme://banxa-return",
+    paymentMethodID: "debit-credit-card"
+)
+
+BanxaPaymentSDK.shared.startPayment(request: request, controller: self)
+```
+
+### Required fields
+
+| Field | Notes |
+|  --- | --- |
+| `crypto`, `fiat`, `fiatAmount` | The order amounts and assets. |
+| `paymentMethodID` | The payment method to use. Declared as an optional in the Swift signature, but Banxa requires a value: omitting it fails at payment execution, not at compile time. |
+| `walletAddress` | The customer's receiving wallet address. |
+| `email` | The customer's email address. |
+| `redirectURL` | Where the customer returns after checkout. Use a scheme you register in `Info.plist`. |
+
+
+Pass `externalCustomerID` as well. It is your stable per-customer identifier, and Banxa uses it to recognise returning customers so they do not repeat KYC.
+
+Do not create orders in advance
+`startPayment` creates the order and presents checkout in a single call, which keeps the order inside the one-minute window in which Banxa checkout must be loaded. Call it at the moment the customer confirms. There is no supported pattern for creating an order early and presenting it later.
+
+A missing memo can permanently lose funds
+XRP, XLM, EOS, and ATOM require a memo or tag. Pass it as `walletAddressTag` on `CreateOrderRequest`.
+
+## Step 4: Handle the outcome
+
+Conform to `BanxaPaymentSDKDelegate`. There are three methods, each with a default no-op implementation, so implement only what you need. All callbacks are delivered on the main actor.
+
+```swift
+import BanxaPaymentSDK
+
+extension CheckoutViewController: BanxaPaymentSDKDelegate {
+
+    func banxaDidCompleteCheckout(_ result: BanxaCheckoutResult) {
+        // Payment succeeded. Confirm the authoritative state from your backend.
+        showProcessingState()
+    }
+
+    func banxaDidFail(error: Error) {
+        // API, validation, network, decoding, or checkout failure.
+        showRetry(message: error.localizedDescription)
+    }
+
+    func banxaDidDismiss() {
+        // The customer closed checkout without completing.
+        returnToAmountEntry()
+    }
+}
+```
+
+`banxaDidCompleteCheckout` is a UI signal, not the authoritative order state. Do not credit the customer on it.
+
+## Step 5: Confirm order status
+
+The SDK does not expose order lookup. Confirm the final state from your backend using the Banxa API.
+
+Only terminal statuses are final. Do not credit the customer until the order reaches `complete`. For the full list, see [Order Statuses](/products/hosted-checkout/docs/transaction-lifecycle/order-statuses), and for lookup see [Order Lookup](/products/hosted-checkout/docs/transaction-lifecycle/order-lookup).
+
+## Step 6: Handle webhooks
+
+Webhooks fire on every order status change and are the reliable mechanism for order tracking. Configure your webhook URL in the merchant dashboard.
+
+The typical pattern:
+
+- Delegate success callback: optimistic UI update, "your order is processing".
+- Webhook to your backend: authoritative order state.
+- Backend pushes the update to the app, or the app re-fetches on resume.
+
+
+See [Webhooks](/products/hosted-checkout/docs/transaction-lifecycle/webhooks) for payload structure and signature verification. Webhook signatures are verified with your HMAC secret, not the v2 `x-api-key`.
+
+## Error handling
+
+Banxa-originated failures reach `banxaDidFail(error:)` as `APIError`. The cases you will meet most often during integration:
+
+| Case | Cause |
+|  --- | --- |
+| `.sdkNotConfigured` | `startPayment` was called before `configure(config:)`. |
+| `.missingCredentials([String])` | `apiKey` or `partnerID` was blank. |
+| `.unauthorized` | `401` from Banxa. Check the key matches the environment. |
+| `.checkoutFailed(String?)` | Checkout reached the failure URL. The payload is the raw query string. |
+
+
+Show user-facing messages only from validated error fields. Do not expose raw error strings that may include internal detail. See [Error Codes](/products/hosted-checkout/docs/reference/error-codes).
+
+## KYC camera access
+
+Banxa runs KYC inside the checkout the SDK presents. Add `NSCameraUsageDescription` to your `Info.plist`, and `NSMicrophoneUsageDescription` if your flow includes liveness capture. Without these keys, document capture fails silently and the customer cannot complete verification.
+
+## Testing
+
+Use sandbox for all development:
+
+```swift
+let config = BanxaConfig(
+    apiKey: "YOUR_SANDBOX_API_KEY",
+    partnerID: "your-partner-id",
+    environment: .sandbox
+)
+```
+
+Apple Pay cannot be tested on the iOS simulator. The simulator reaches the payment sheet and then fails at payment. Test on a real device with at least one card added to Wallet.
+
+For test credentials, see [Sandbox Test Data](/products/hosted-checkout/docs/testing/sandbox-test-data).
+
+## Native payment sheet
+
+The SDK presents a native payment sheet for card, Apple Pay, and Google Pay when the customer is cleared for it, and falls back to Banxa checkout when they are not. Driving that behaviour explicitly, including reading the eligibility result and acting on outstanding requirements, is a Banxa Native capability for partners who verify their own users and run their own KYC. See [Banxa Native](https://banxa-enterprise.redocly.app/enterprise-api/v0-beta), or talk to Banxa about whether it is relevant to your integration.
+
+## Next steps
+
+- [iOS SDK Reference](/products/hosted-checkout/docs/sdk-integration/ios-sdk-reference): full method, model, and error reference.
+- [Webhooks](/products/hosted-checkout/docs/transaction-lifecycle/webhooks): configure webhook notifications.
+- [Order Statuses](/products/hosted-checkout/docs/transaction-lifecycle/order-statuses): full status reference.
+- [Sandbox Test Data](/products/hosted-checkout/docs/testing/sandbox-test-data): credentials and test values.import qrcode
 
 # 自訂你的交易或資產記錄內容（僅供自己本地記錄使用）
 transaction_data = "Type: ETH Test | Amount: 1000 TWD | Status: Local Simulation"
